@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="491.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.samson.controller.MainViewController">
+   <children>
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="454.0" prefWidth="802.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="14.0">
+        <tabs>
+          <Tab text="Encrypt">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="802.0">
+                     <children>
+                        <VBox layoutX="23.0" layoutY="17.0" prefHeight="390.0" prefWidth="734.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="64.0" prefWidth="734.0">
+                                 <children>
+                                    <Button fx:id="buttonGenerateKeyPairAndSecretKey" mnemonicParsing="false" text="Generate Sender(A) and Receiver(B) KeyPair For RSA &amp; ECC with AES Secret Key" />
+                                 </children>
+                              </HBox>
+                              <HBox prefHeight="303.0" prefWidth="734.0">
+                                 <children>
+                                    <VBox prefHeight="282.0" prefWidth="454.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="146.0" text="File:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldFileToEncrypt" prefHeight="26.0" prefWidth="223.0" promptText="Select/Browse File To be encrypted.">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <Button fx:id="buttonBrowseFileToEncrypt" mnemonicParsing="false" text="Browse" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Encrypt File Destination:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldEncryptedFileDestination" prefHeight="26.0" prefWidth="223.0" promptText="Enter Destination Of Decrypted File">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <Button mnemonicParsing="false" text="Browse" visible="false" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Secret Key:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldEncryptionSecretKey" prefHeight="26.0" prefWidth="223.0">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Encrypted Secret Key:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldEncryptionEncryptedSecretKey" prefHeight="26.0" prefWidth="223.0">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Hash:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldEncryptionHash" prefHeight="26.0" prefWidth="223.0">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Digital Signature:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldEncryptionDigitalSignature" prefHeight="26.0" prefWidth="223.0">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="454.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Button fx:id="buttonEncryptFileTrigger" mnemonicParsing="false" prefHeight="26.0" prefWidth="221.0" text="Encrypt File" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="263.0" prefWidth="270.0">
+                                       <children>
+                                          <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #000;">
+                                             <top>
+                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time &amp; Memory Usage" BorderPane.alignment="CENTER" />
+                                             </top>
+                                             <center>
+                                                <VBox prefHeight="135.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
+                                                         <children>
+                                                            <RadioButton fx:id="radioButtonEncryptFileEncryptOnly" mnemonicParsing="false" text="File Encryption Only" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
+                                                         <children>
+                                                            <RadioButton fx:id="radioButtonEncryptFileEncryptWithSignatureVerification" mnemonicParsing="false" prefHeight="18.0" prefWidth="238.0" text="File Encryption + Signature Verification" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </center>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </BorderPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Decrypt">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <VBox prefHeight="390.0" prefWidth="734.0">
+                           <children>
+                              <HBox alignment="CENTER" prefHeight="64.0" prefWidth="734.0" />
+                              <HBox prefHeight="303.0" prefWidth="734.0">
+                                 <children>
+                                    <VBox prefHeight="303.0" prefWidth="460.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="157.0" text="File:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldEncryptedFileToDecrypt" prefHeight="26.0" prefWidth="223.0" promptText="Browse/Select Encrypted File To Decrypt">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <Button fx:id="buttonBrowseEncryptedFileToDecrypt" mnemonicParsing="false" text="Browse" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Decrypted File Destination:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldDecryptedFileDestination" prefHeight="26.0" prefWidth="222.0" promptText="Enter Destination Of Decrypted File">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Hash:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldDecryptionHash" prefHeight="26.0" prefWidth="223.0">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                                <TextField fx:id="hiddenTextFieldIV" prefHeight="26.0" prefWidth="48.0" visible="false" />
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="160.0" text="Digital Signature:">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <TextField fx:id="textFieldDecryptedDigitalSignature" prefHeight="26.0" prefWidth="223.0">
+                                                   <opaqueInsets>
+                                                      <Insets />
+                                                   </opaqueInsets>
+                                                   <HBox.margin>
+                                                      <Insets right="10.0" />
+                                                   </HBox.margin>
+                                                </TextField>
+                                             </children>
+                                          </HBox>
+                                          <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="454.0">
+                                             <children>
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="162.0">
+                                                   <padding>
+                                                      <Insets right="10.0" />
+                                                   </padding>
+                                                </Label>
+                                                <Button fx:id="buttonDecryptFileTrigger" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Decrypt File" />
+                                             </children>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                    <VBox prefHeight="263.0" prefWidth="270.0">
+                                       <children>
+                                          <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #000;">
+                                             <top>
+                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time &amp; Memory Usage" BorderPane.alignment="CENTER" />
+                                             </top>
+                                             <center>
+                                                <VBox prefHeight="135.0" prefWidth="270.0" BorderPane.alignment="CENTER">
+                                                   <children>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
+                                                         <children>
+                                                            <RadioButton fx:id="radioButtonDecryptFileDecryptOnly" mnemonicParsing="false" text="File Decryption Only" />
+                                                         </children>
+                                                      </HBox>
+                                                      <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
+                                                         <children>
+                                                            <RadioButton fx:id="radioButtonDecryptFileDecryptWithSignatureVerification" mnemonicParsing="false" prefHeight="18.0" prefWidth="238.0" text="File Decryption + Signature Verification" />
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                             </center>
+                                             <padding>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </padding>
+                                          </BorderPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </HBox>
+                           </children>
+                        </VBox>
+                     </children>
+                  </AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+   </children>
+</AnchorPane>
