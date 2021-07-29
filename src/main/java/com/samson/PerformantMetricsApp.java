@@ -24,13 +24,14 @@ public class PerformantMetricsApp extends Application {
     private static final Logger LOGGER = Logger.getLogger(PerformantMetricsApp.class);
 
     public static Stage primaryStage;
+    public static Stage mainLoginStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
         System.out.println("Running Successfully...");
         primaryStage = primaryStage;
         configurePrimaryStage(primaryStage);
-        this.loadMainMenu();
+        loadLoginMenu();
     }
 
     @Override
@@ -54,26 +55,53 @@ public class PerformantMetricsApp extends Application {
     }
 
 
-    private void loadMainMenu() throws IOException {
+    public static void loadMainMenu(Stage primaryStage) throws IOException {
 
         FXMLLoader fxmlLoader1 = new FXMLLoader();
-        Pane rootSplashPane = (Pane) fxmlLoader1.load(getClass().getClassLoader().getResource(Constants.MAIN_VIEW));
+        Pane rootSplashPane =
+                (Pane) fxmlLoader1.load(PerformantMetricsApp.class.getClassLoader().getResource(Constants.MAIN_VIEW));
 
         fxmlLoader1.getController();
 
-        Stage mainStage = new Stage();
 
-//        mainStage.initStyle(StageStyle.UNDECORATED);
-        mainStage.setResizable(false);
-        mainStage.setMaximized(false);
+        if(primaryStage == null) {
+            primaryStage = new Stage();
+        }
+        Stage mainStage = primaryStage;
+
+        primaryStage.setResizable(false);
+        primaryStage.setMaximized(false);
 
         Scene scene = new Scene(rootSplashPane);
-        mainStage.setScene(scene);
-        mainStage.show();
+        primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public static void loadLoginMenu() throws IOException {
+
+        FXMLLoader fxmlLoader1 = new FXMLLoader();
+        Pane rootSplashPane =
+                (Pane) fxmlLoader1.load(PerformantMetricsApp.class.getClassLoader().getResource(Constants.LOGIN_VIEW));
+
+        fxmlLoader1.getController();
+
+        if(mainLoginStage == null)
+            mainLoginStage = new Stage();
+
+        mainLoginStage.setResizable(false);
+        mainLoginStage.setMaximized(false);
+
+        Scene scene = new Scene(rootSplashPane);
+        mainLoginStage.setScene(scene);
+        mainLoginStage.show();
     }
 
 
-    private void configurePrimaryStage(Stage primaryStage) {
+    public static void configurePrimaryStage(Stage primaryStage) {
+
+        if(primaryStage == null) {
+            primaryStage = new Stage();
+        }
         primaryStage.setResizable(false);
         primaryStage.setMaximized(false);
         primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {

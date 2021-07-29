@@ -6,4 +6,5 @@ package com.samson;
  */
 public class Constants {
     public static final String MAIN_VIEW = "com/samson/MainView.fxml";
+    public static final String LOGIN_VIEW = "com/samson/LoginView.fxml";
 }

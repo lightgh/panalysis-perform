@@ -12,6 +12,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.*;
+import java.util.Arrays;
+import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
@@ -35,6 +37,12 @@ public class MainViewController implements Initializable {
 
 //    @FXML
     public TextField hiddenTextFieldIV;
+    
+    public TextField textFieldEncryptionInitVector;
+    public TextField textFieldDecryptionInitVector;
+    public Button btnClearDecrypt;
+    public Button btnClearEncrypt;
+
 
     @FXML
     private ResourceBundle resources;
@@ -130,6 +138,8 @@ public class MainViewController implements Initializable {
     long fileDecryptionMemoryUsage;
     long fileDecryptionSignatureVerificationTime;
     long fileDecryptionSignatureVerificationMemoryUsage;
+    private Stage browseFileToDecryptStage;
+    private FileChooser fileChooserDecrypt;
 
 
     @FXML
@@ -196,6 +206,8 @@ public class MainViewController implements Initializable {
 
         setupBrowseFileToEncryptHandler();
 
+        setupBrowseFileToDecryptHandler();
+
         setupDecryptFileTriggerHandler();
 
     }
@@ -203,17 +215,28 @@ public class MainViewController implements Initializable {
     private void setupDecryptFileTriggerHandler() {
         buttonDecryptFileTrigger.setOnAction(event -> {
             try {
+                if(alertInfo == null){
+                    alertInfo = new Alert(Alert.AlertType.INFORMATION);
+                }
+                alertInfo.getDialogPane().setPrefHeight(Region.USE_PREF_SIZE);
+
                 // TODO add your handling code here:
                 if(this.textFieldEncryptedFileToDecrypt.getText() == null || this.textFieldEncryptedFileToDecrypt.getText().trim().isEmpty()){
                     alertInfo.setContentText("Please File Select Encrypted File TO Decrypt");
-                    alertInfo.show();
+                    alertInfo.showAndWait();
                     return;
                 }
 
                 if(this.textFieldDecryptedFileDestination.getText() == null || this.textFieldDecryptedFileDestination.getText().trim().isEmpty()){
                     alertInfo.setContentText("Please Destination Of Decrypted File");
-                    alertInfo.show();
+                    alertInfo.showAndWait();
                     return;
+                }
+
+                String initVectorH = this.textFieldDecryptionInitVector.getText();
+
+                if(initVectorH == null || initVectorH.length() == 8){
+                    System.out.println( "initVectorH: " + initVectorH );
                 }
 
                 String signECDSAStr = textFieldDecryptedDigitalSignature.getText();
@@ -226,7 +249,7 @@ public class MainViewController implements Initializable {
                 if(!verifyECDSA){
                     alertInfo.setHeaderText("Can't Proceed With Decryption");
                     alertInfo.setContentText("As The Source Of the File Cant Be Verified");
-                    alertInfo.show();
+                    alertInfo.showAndWait();
                     return;
                 }
 
@@ -238,7 +261,6 @@ public class MainViewController implements Initializable {
                 fileDecryptionSignatureVerificationMemoryUsage = sigverifyM.getMemoryUsed();
                 fileEncryptionSignatureVerificationTime = sigverifyM.getTimeDifference();
 
-                String initVectorH = this.hiddenTextFieldIV.getText();
 
                 File fileToCheck = new File(this.textFieldEncryptedFileToDecrypt.getText());
                 File decryptedDestination =  new File(textFieldDecryptedFileDestination.getText());
@@ -261,20 +283,40 @@ public class MainViewController implements Initializable {
 
 
                 if(!decryptionMeasurementType.equalsIgnoreCase("DecryptFileOnly")){
-                    alertMessage.append("Decryption + Signature Verification Time: " + (fileDecryptionTime + fileDecryptionSignatureVerificationTime));
-                    alertMessage.append("\nDecryption + Signature Verification Memory Used: " + (fileDecryptionMemoryUsage + fileDecryptionSignatureVerificationMemoryUsage));
+                    alertMessage.append("Decryption + Signature Verification Time: " + convertedNanoSecondToSecondTime(fileDecryptionTime + fileDecryptionSignatureVerificationTime));
+                    alertMessage.append("\nDecryption + Signature Verification Memory Used: " + convertedBytesToMb(fileDecryptionMemoryUsage + fileDecryptionSignatureVerificationMemoryUsage));
                 }else{
-                    alertMessage.append("Decryption Time: " + (fileDecryptionTime));
-                    alertMessage.append("\nDecryption Memory Used: " + (fileDecryptionMemoryUsage));
+                    alertMessage.append("Decryption Time: " + convertedNanoSecondToSecondTime(fileDecryptionTime));
+                    alertMessage.append("\nDecryption Memory Used: " + convertedBytesToMb(fileDecryptionMemoryUsage));
                 }
 
                 alertInfo.setContentText(alertMessage.toString());
-                alertInfo.show();
+                alertInfo.showAndWait();
 
                 return;
             } catch (Exception ex) {
                 LOGGER.error(null, ex);
             }
+        });
+
+        btnClearEncrypt.setOnAction(event -> {
+            textFieldEncryptedFileDestination.setText("");
+            textFieldFileToEncrypt.setText("");
+            textFieldEncryptionInitVector.setText("");
+            textFieldEncryptionSecretKey.setText("");
+            textFieldEncryptionEncryptedSecretKey.setText("");
+            textFieldEncryptionHash.setText("");
+            textFieldEncryptionDigitalSignature.setText("");
+            buttonEncryptFileTrigger.setDisable(true);
+            btnClearDecrypt.fire();
+        });
+
+        btnClearDecrypt.setOnAction(event -> {
+            textFieldDecryptionInitVector.setText("");
+            textFieldEncryptedFileToDecrypt.setText("");
+            textFieldDecryptedFileDestination.setText("");
+            textFieldDecryptionHash.setText("");
+            textFieldDecryptedDigitalSignature.setText("");
         });
     }
 
@@ -302,6 +344,96 @@ public class MainViewController implements Initializable {
             }
 
         });
+
+
+        btnClearDecrypt.setOnAction(event -> {
+
+        });
+    }
+
+
+    private void setupBrowseFileToDecryptHandler() {
+
+        buttonBrowseEncryptedFileToDecrypt.setOnAction( event -> {
+
+            if(browseFileToDecryptStage == null) {
+                browseFileToDecryptStage = new Stage();
+            }
+
+            if(fileChooserDecrypt == null) {
+                fileChooserDecrypt = new FileChooser();
+            }
+
+
+//            fileChooserDecrypt.setSelectedExtensionFilter(selectedExtensionFilter);
+
+            fileChooserDecrypt.setTitle("Select File To Decrypt");
+            fileChooserDecrypt.setSelectedExtensionFilter(new FileChooser.ExtensionFilter(
+                    "Encrypted File", "ENCRYPTED"));
+
+            File file = fileChooserDecrypt.showOpenDialog(browseFileToDecryptStage);
+            if (file == null) {
+                alertInfo.setContentText("Please You Have To Select A Valid File For Decryption");
+                alertInfo.show();
+                textFieldEncryptedFileToDecrypt.setText(null);
+                return;
+            }else{
+                String path = file.getAbsolutePath();
+                String newPath = "";
+                try {
+                    newPath = getNewTargetDecryptionPath(path);
+                }catch(Exception e){
+                    alertInfo.setContentText(e.getMessage());
+                    alertInfo.showAndWait();
+                    return;
+                }
+                textFieldEncryptedFileToDecrypt.setText(path);
+
+
+
+                this.textFieldDecryptedFileDestination.setText(newPath);
+
+                alertInfo.setHeaderText("Destination Of Decrypted File Is SET for you Automatically");
+                alertInfo.setContentText("If Not OKay with it please Change it" );
+                alertInfo.getDialogPane().setPrefHeight(Region.USE_PREF_SIZE);
+                alertInfo.show();
+            }
+
+        });
+    }
+
+    public static void main(String[] args) {
+        String str = "C:\\Users\byteworks\\Documents\\LittleBookofQuotes.pdf.ENCRYPTED";
+        System.out.println("HIHI: " + getNewTargetDecryptionPath(str) );
+    }
+
+    public static String getNewTargetDecryptionPath(String path){
+        String[] pathArray = path.split("\\.");
+
+        String errorMsg = "Please Select a Valid Encrypted File with 'ENCRYPTED' Extension";
+
+        if(pathArray.length < 2){
+            throw new IllegalArgumentException(errorMsg);
+        }
+
+        System.out.println(Arrays.toString(pathArray));
+        System.out.println("Arrays.toString(pathArray): " + pathArray[pathArray.length - 1]);
+
+        if(!(pathArray[pathArray.length - 1]).equals("ENCRYPTED")){
+            throw new IllegalArgumentException(errorMsg);
+        }
+
+        String pdfExt = pathArray[pathArray.length - 2];
+
+        String newPath = path.replace("." + pdfExt +"." + pathArray[pathArray.length - 1], "");
+        int randNum = new Random().nextInt();
+        if(randNum < 0){
+            randNum = randNum * -1;
+        }
+
+        String outcome = newPath + "-" + randNum + "-Decrypted." + pdfExt;
+
+        return outcome;
     }
 
     private void setupEncryptFileTriggerHandler() {
@@ -334,17 +466,25 @@ public class MainViewController implements Initializable {
 
 
             if(!encryptionMeasurementType.equalsIgnoreCase("EncryptFileOnly")){
-                alertMessage.append("Encryption + Signature Verification Time: " + (fileEncryptionTime + fileEncryptionSignatureVerificationTime));
-                alertMessage.append("\nEncryption + Signature Verification Memory Used: " + (fileEncryptionMemoryUsage + fileEncryptionSignatureVerificationMemoryUsage));
+                alertMessage.append("Encryption + Signature Generation Time: " + convertedNanoSecondToSecondTime(fileEncryptionTime + fileEncryptionSignatureVerificationTime));
+                alertMessage.append("\nEncryption + Signature Generation Memory Used: " + convertedBytesToMb(fileEncryptionMemoryUsage + fileEncryptionSignatureVerificationMemoryUsage));
             }else{
-                alertMessage.append("Encryption Time: " + (fileEncryptionTime));
-                alertMessage.append("\nEncryption Memory Used: " + (fileEncryptionMemoryUsage));
+                alertMessage.append("Encryption Time: " + convertedNanoSecondToSecondTime(fileEncryptionTime));
+                alertMessage.append("\nEncryption Memory Used: " + convertedNanoSecondToSecondTime(fileEncryptionMemoryUsage));
             }
 
             alertInfo.setContentText(alertMessage.toString());
             alertInfo.show();
 
         });
+    }
+
+    public static double convertedNanoSecondToSecondTime(long time){
+        return  (double)time/1000000000;
+    }
+
+    public static double convertedBytesToMb(long bytesdata){
+        return  (double)bytesdata/(1024 * 1024);
     }
 
     private void setupGenerateKeyHandler() {
@@ -376,6 +516,8 @@ public class MainViewController implements Initializable {
 
                 textFieldEncryptionSecretKey.setText(aesEncyrpt.getKey());
                 hiddenTextFieldIV.setText(aesEncyrpt.getInitVector());
+                textFieldDecryptionInitVector.setText(aesEncyrpt.getInitVector());
+                textFieldEncryptionInitVector.setText(aesEncyrpt.getInitVector());
 
 
                 System.out.println("AesEncyrpt: " + aesEncyrpt.getKey());
