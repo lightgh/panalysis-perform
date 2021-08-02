@@ -1,0 +1,7 @@
+.anchor{
+    -fx-background-image:  url('app-background4.jpg')
+}
+
+.login{
+    -fx-background-image: url('app-background.jpg');
+}

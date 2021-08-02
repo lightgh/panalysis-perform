@@ -51,7 +51,6 @@ public class LoginViewController {
     void handleSignInAction(ActionEvent event) throws IOException {
         if("password".equals(passwordField.getText()) && "admin".equals(userNameTextField.getText())){
             PerformantMetricsApp.mainLoginStage.hide();
-            PerformantMetricsApp.configurePrimaryStage(primaryStage);
             PerformantMetricsApp.loadMainMenu(primaryStage);
         }
     }

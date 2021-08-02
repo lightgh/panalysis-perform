@@ -1,5 +1,6 @@
 package com.samson.controller;
 
+import com.samson.PerformantMetricsApp;
 import com.samson.encrypt.*;
 import com.samson.utils.MetricsMeasurement;
 import javafx.beans.value.ChangeListener;
@@ -219,6 +220,8 @@ public class MainViewController implements Initializable {
                     alertInfo = new Alert(Alert.AlertType.INFORMATION);
                 }
 
+                PerformantMetricsApp.setDialogIcon(alertInfo);
+
                 // TODO add your handling code here:
                 if(this.textFieldEncryptedFileToDecrypt.getText() == null || this.textFieldEncryptedFileToDecrypt.getText().trim().isEmpty()){
                     alertInfo.setContentText("Please File Select Encrypted File TO Decrypt");
@@ -330,6 +333,8 @@ public class MainViewController implements Initializable {
             fileChooser.setTitle("Select File To Encrypt");
 
             File file = fileChooser.showOpenDialog(stage);
+
+            PerformantMetricsApp.setDialogIcon(alertInfo);
             if (file == null) {
                 alertInfo.setContentText("Please You Have To Select A Valid File For Encryption");
                 alertInfo.show();
@@ -364,7 +369,6 @@ public class MainViewController implements Initializable {
                 fileChooserDecrypt = new FileChooser();
             }
 
-
 //            fileChooserDecrypt.setSelectedExtensionFilter(selectedExtensionFilter);
 
             fileChooserDecrypt.setTitle("Select File To Decrypt");
@@ -389,8 +393,6 @@ public class MainViewController implements Initializable {
                 }
                 textFieldEncryptedFileToDecrypt.setText(path);
 
-
-
                 this.textFieldDecryptedFileDestination.setText(newPath);
 
                 alertInfo.setHeaderText("Destination Of Decrypted File Is SET for you Automatically");
@@ -398,7 +400,6 @@ public class MainViewController implements Initializable {
                 alertInfo.getDialogPane().setPrefHeight(Region.USE_PREF_SIZE);
                 alertInfo.show();
             }
-
         });
     }
 
@@ -437,6 +438,8 @@ public class MainViewController implements Initializable {
     }
 
     private void setupEncryptFileTriggerHandler() {
+
+        PerformantMetricsApp.setDialogIcon(alertInfo);
         buttonEncryptFileTrigger.setOnAction(event -> {
 
             if(this.aesEncyrpt == null){

@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -14,6 +15,8 @@ import org.apache.log4j.Logger;
 import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
+
+import static com.samson.PerformantMetricsApp.primaryStage;
 
 /**
  * @author - Chinaka .I. Light <ichinaka@byteworks.com.ng>
@@ -67,10 +70,12 @@ public class PerformantMetricsApp extends Application {
         if(primaryStage == null) {
             primaryStage = new Stage();
         }
-        Stage mainStage = primaryStage;
+
+        PerformantMetricsApp.configurePrimaryStage(primaryStage);
 
         primaryStage.setResizable(false);
         primaryStage.setMaximized(false);
+        primaryStage.getIcons().add(Constants.APP_IMAGE_ICON);
 
         Scene scene = new Scene(rootSplashPane);
         primaryStage.setScene(scene);
@@ -88,10 +93,13 @@ public class PerformantMetricsApp extends Application {
         if(mainLoginStage == null)
             mainLoginStage = new Stage();
 
+        configurePrimaryStage(mainLoginStage);
+
         mainLoginStage.setResizable(false);
         mainLoginStage.setMaximized(false);
 
         Scene scene = new Scene(rootSplashPane);
+        mainLoginStage.getIcons().add(Constants.APP_IMAGE_ICON);
         mainLoginStage.setScene(scene);
         mainLoginStage.show();
     }
@@ -112,6 +120,7 @@ public class PerformantMetricsApp extends Application {
                         ButtonType.YES
                         , ButtonType.NO);
 //                UserInterfaceUtility.setDialogIcon(alert);
+                setDialogIcon(alert);
                 alert.showAndWait();
                 if (alert.getResult() == ButtonType.YES) {
                     Platform.exit();
@@ -119,6 +128,18 @@ public class PerformantMetricsApp extends Application {
                 }
             }
         });
+    }
+
+
+    public static void setDialogIcon(Dialog d){
+        try {
+            Stage dialogueStage = (Stage)d.getDialogPane().getScene().getWindow();
+            if(dialogueStage != null){
+                dialogueStage.getIcons().add(Constants.APP_IMAGE_ICON);
+            }
+        } catch (Exception e) {
+            LOGGER.error(e.getMessage());
+        }
     }
 
 
