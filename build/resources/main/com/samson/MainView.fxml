@@ -11,20 +11,24 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="491.0" prefWidth="827.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.samson.controller.MainViewController">
+<AnchorPane prefHeight="491.0" prefWidth="827.0" styleClass="anchor" stylesheets="@application.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.samson.controller.MainViewController">
    <children>
-      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="454.0" prefWidth="802.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="14.0">
+      <TabPane layoutX="14.0" layoutY="14.0" prefHeight="454.0" prefWidth="802.0" stylesheets="@application.css" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="23.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="14.0">
         <tabs>
           <Tab text="Encrypt">
             <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="802.0">
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="412.0" prefWidth="802.0" style="-fx-background-image: url(' app-background.jpg');">
                      <children>
                         <VBox layoutX="23.0" layoutY="17.0" prefHeight="390.0" prefWidth="734.0">
                            <children>
                               <HBox alignment="CENTER" prefHeight="64.0" prefWidth="734.0">
                                  <children>
-                                    <Button fx:id="buttonGenerateKeyPairAndSecretKey" mnemonicParsing="false" text="Generate Sender(A) and Receiver(B) KeyPair For RSA &amp; ECC with AES Secret Key" />
+                                    <Button fx:id="buttonGenerateKeyPairAndSecretKey" mnemonicParsing="false" text="Generate Sender(A) and Receiver(B) KeyPair For RSA &amp; ECC with AES Secret Key">
+                                       <font>
+                                          <Font name="System Bold" size="12.0" />
+                                       </font></Button>
                                  </children>
                               </HBox>
                               <HBox prefHeight="303.0" prefWidth="734.0">
@@ -33,10 +37,13 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="146.0" text="File:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="146.0" text="File:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldFileToEncrypt" prefHeight="26.0" prefWidth="223.0" promptText="Select/Browse File To be encrypted.">
                                                    <opaqueInsets>
@@ -46,15 +53,21 @@
                                                       <Insets right="10.0" />
                                                    </HBox.margin>
                                                 </TextField>
-                                                <Button fx:id="buttonBrowseFileToEncrypt" mnemonicParsing="false" text="Browse" />
+                                                <Button fx:id="buttonBrowseFileToEncrypt" mnemonicParsing="false" text="Browse">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Button>
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Encrypt File Destination:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Encrypt File Destination:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldEncryptedFileDestination" prefHeight="26.0" prefWidth="223.0" promptText="Enter Destination Of Decrypted File">
                                                    <opaqueInsets>
@@ -69,10 +82,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Init Vector:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Init Vector:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldEncryptionInitVector" prefHeight="26.0" prefWidth="223.0">
                                                    <opaqueInsets>
@@ -86,10 +102,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Secret Key:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Secret Key:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="14.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldEncryptionSecretKey" prefHeight="26.0" prefWidth="223.0">
                                                    <opaqueInsets>
@@ -103,10 +122,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Encrypted Secret Key:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Encrypted Secret Key:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldEncryptionEncryptedSecretKey" prefHeight="26.0" prefWidth="223.0">
                                                    <opaqueInsets>
@@ -120,10 +142,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Hash:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Hash:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldEncryptionHash" prefHeight="26.0" prefWidth="223.0">
                                                    <opaqueInsets>
@@ -137,10 +162,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Digital Signature:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="148.0" text="Digital Signature:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldEncryptionDigitalSignature" prefHeight="26.0" prefWidth="223.0">
                                                    <opaqueInsets>
@@ -162,29 +190,44 @@
                                                 <Button fx:id="buttonEncryptFileTrigger" mnemonicParsing="false" prefHeight="26.0" prefWidth="221.0" text="Encrypt File">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
-                                                   </HBox.margin></Button>
-                                                <Button fx:id="btnClearEncrypt" mnemonicParsing="false" text="Clear" />
+                                                   </HBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Button>
+                                                <Button fx:id="btnClearEncrypt" mnemonicParsing="false" text="Clear">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Button>
                                              </children>
                                           </HBox>
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="263.0" prefWidth="270.0">
                                        <children>
-                                          <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #000;">
+                                          <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #fff; -fx-border-width: 2px;">
                                              <top>
-                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time " BorderPane.alignment="CENTER" />
+                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time " textFill="#fcfcfc" BorderPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Label>
                                              </top>
                                              <center>
                                                 <VBox prefHeight="135.0" prefWidth="270.0" BorderPane.alignment="CENTER">
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
                                                          <children>
-                                                            <RadioButton fx:id="radioButtonEncryptFileEncryptOnly" mnemonicParsing="false" text="File Encryption Only" />
+                                                            <RadioButton fx:id="radioButtonEncryptFileEncryptOnly" mnemonicParsing="false" text="File Encryption Only" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="12.0" />
+                                                               </font></RadioButton>
                                                          </children>
                                                       </HBox>
                                                       <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
                                                          <children>
-                                                            <RadioButton fx:id="radioButtonEncryptFileEncryptWithSignatureVerification" mnemonicParsing="false" prefHeight="18.0" prefWidth="238.0" text="File Encryption + Signature Generation" />
+                                                            <RadioButton fx:id="radioButtonEncryptFileEncryptWithSignatureVerification" mnemonicParsing="false" prefHeight="18.0" prefWidth="253.0" text="File Encryption + Signature Generation" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="12.0" />
+                                                               </font></RadioButton>
                                                          </children>
                                                       </HBox>
                                                    </children>
@@ -217,10 +260,13 @@
                                        <children>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="157.0" text="File:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="157.0" text="File:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldEncryptedFileToDecrypt" prefHeight="26.0" prefWidth="223.0" promptText="Browse/Select Encrypted File To Decrypt">
                                                    <opaqueInsets>
@@ -230,15 +276,21 @@
                                                       <Insets right="10.0" />
                                                    </HBox.margin>
                                                 </TextField>
-                                                <Button fx:id="buttonBrowseEncryptedFileToDecrypt" mnemonicParsing="false" text="Browse" />
+                                                <Button fx:id="buttonBrowseEncryptedFileToDecrypt" mnemonicParsing="false" text="Browse">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Button>
                                              </children>
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Decrypted File Destination:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Decrypted File Destination:" textFill="#fcfafa">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="11.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldDecryptedFileDestination" prefHeight="26.0" prefWidth="222.0" promptText="Enter Destination Of Decrypted File">
                                                    <opaqueInsets>
@@ -252,10 +304,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Init Vector:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Init Vector:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldDecryptionInitVector" prefHeight="26.0" prefWidth="222.0" promptText="Enter InitVector Of Encrypted File ">
                                                    <opaqueInsets>
@@ -269,10 +324,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Hash:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="159.0" text="Hash:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldDecryptionHash" prefHeight="26.0" prefWidth="223.0">
                                                    <opaqueInsets>
@@ -287,10 +345,13 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" prefHeight="52.0" prefWidth="442.0">
                                              <children>
-                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="160.0" text="Digital Signature:">
+                                                <Label alignment="CENTER_RIGHT" prefHeight="18.0" prefWidth="160.0" text="Digital Signature:" textFill="WHITE">
                                                    <padding>
                                                       <Insets right="10.0" />
                                                    </padding>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font>
                                                 </Label>
                                                 <TextField fx:id="textFieldDecryptedDigitalSignature" prefHeight="26.0" prefWidth="223.0">
                                                    <opaqueInsets>
@@ -312,29 +373,44 @@
                                                 <Button fx:id="buttonDecryptFileTrigger" mnemonicParsing="false" prefHeight="26.0" prefWidth="219.0" text="Decrypt File">
                                                    <HBox.margin>
                                                       <Insets right="10.0" />
-                                                   </HBox.margin></Button>
-                                                <Button fx:id="btnClearDecrypt" mnemonicParsing="false" text="Clear" />
+                                                   </HBox.margin>
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Button>
+                                                <Button fx:id="btnClearDecrypt" mnemonicParsing="false" text="Clear">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Button>
                                              </children>
                                           </HBox>
                                        </children>
                                     </VBox>
                                     <VBox prefHeight="263.0" prefWidth="270.0">
                                        <children>
-                                          <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #000;">
+                                          <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #fff; -fx-border-width: 2px;">
                                              <top>
-                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time" BorderPane.alignment="CENTER" />
+                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time" textFill="WHITE" BorderPane.alignment="CENTER">
+                                                   <font>
+                                                      <Font name="System Bold" size="12.0" />
+                                                   </font></Label>
                                              </top>
                                              <center>
                                                 <VBox prefHeight="135.0" prefWidth="270.0" BorderPane.alignment="CENTER">
                                                    <children>
                                                       <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
                                                          <children>
-                                                            <RadioButton fx:id="radioButtonDecryptFileDecryptOnly" mnemonicParsing="false" text="File Decryption Only" />
+                                                            <RadioButton fx:id="radioButtonDecryptFileDecryptOnly" mnemonicParsing="false" text="File Decryption Only" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="12.0" />
+                                                               </font></RadioButton>
                                                          </children>
                                                       </HBox>
                                                       <HBox alignment="CENTER_LEFT" prefHeight="31.0" prefWidth="270.0">
                                                          <children>
-                                                            <RadioButton fx:id="radioButtonDecryptFileDecryptWithSignatureVerification" mnemonicParsing="false" prefHeight="18.0" prefWidth="238.0" text="File Decryption + Signature Verification" />
+                                                            <RadioButton fx:id="radioButtonDecryptFileDecryptWithSignatureVerification" mnemonicParsing="false" prefHeight="18.0" prefWidth="255.0" text="File Decryption + Signature Verification" textFill="WHITE">
+                                                               <font>
+                                                                  <Font name="System Bold" size="12.0" />
+                                                               </font></RadioButton>
                                                          </children>
                                                       </HBox>
                                                    </children>
