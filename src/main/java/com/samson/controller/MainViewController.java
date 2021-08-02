@@ -285,11 +285,11 @@ public class MainViewController implements Initializable {
 
                 if(!decryptionMeasurementType.equalsIgnoreCase("DecryptFileOnly")){
                     alertMessage.append("Decryption + Signature Verification Time: " + convertedNanoSecondToSecondTime(fileDecryptionTime + fileDecryptionSignatureVerificationTime) + " Seconds");
-                    alertMessage.append("\nDecryption + Signature Verification Memory Used: " + convertedBytesToMb(fileDecryptionMemoryUsage + fileDecryptionSignatureVerificationMemoryUsage) + " MB");
+//                    alertMessage.append("\nDecryption + Signature Verification Memory Used: " + convertedBytesToMb(fileDecryptionMemoryUsage + fileDecryptionSignatureVerificationMemoryUsage) + " MB");
                 }else{
                     alertMessage.append("Decryption Time: " + convertedNanoSecondToSecondTime(fileDecryptionTime) +
                             "Seconds");
-                    alertMessage.append("\nDecryption Memory Used: " + convertedBytesToMb(fileDecryptionMemoryUsage) + "MB");
+//                    alertMessage.append("\nDecryption Memory Used: " + convertedBytesToMb(fileDecryptionMemoryUsage) + "MB");
                 }
 
                 alertInfo.setContentText(alertMessage.toString());
@@ -468,11 +468,11 @@ public class MainViewController implements Initializable {
 
             if(!encryptionMeasurementType.equalsIgnoreCase("EncryptFileOnly")){
                 alertMessage.append("Encryption + Signature Generation Time: " + convertedNanoSecondToSecondTime(fileEncryptionTime + fileEncryptionSignatureVerificationTime)  + " Seconds");
-                alertMessage.append("\nEncryption + Signature Generation Memory Used: " + convertedBytesToMb(fileEncryptionMemoryUsage + fileEncryptionSignatureVerificationMemoryUsage) + " MB");
+//                alertMessage.append("\nEncryption + Signature Generation Memory Used: " + convertedBytesToMb(fileEncryptionMemoryUsage + fileEncryptionSignatureVerificationMemoryUsage) + " MB");
             }else{
                 alertMessage.append("Encryption Time: " + convertedNanoSecondToSecondTime(fileEncryptionTime) + " " +
                         "Seconds");
-                alertMessage.append("\nEncryption Memory Used: " + convertedNanoSecondToSecondTime(fileEncryptionMemoryUsage) + " MB");
+//                alertMessage.append("\nEncryption Memory Used: " + convertedNanoSecondToSecondTime(fileEncryptionMemoryUsage) + " MB");
             }
 
             alertInfo.setContentText(alertMessage.toString());

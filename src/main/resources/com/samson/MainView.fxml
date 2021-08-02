@@ -172,7 +172,7 @@
                                        <children>
                                           <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #000;">
                                              <top>
-                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time &amp; Memory Usage" BorderPane.alignment="CENTER" />
+                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time " BorderPane.alignment="CENTER" />
                                              </top>
                                              <center>
                                                 <VBox prefHeight="135.0" prefWidth="270.0" BorderPane.alignment="CENTER">
@@ -322,7 +322,7 @@
                                        <children>
                                           <BorderPane prefHeight="115.0" prefWidth="270.0" style="-fx-border-color: #000;">
                                              <top>
-                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time &amp; Memory Usage" BorderPane.alignment="CENTER" />
+                                                <Label prefHeight="18.0" prefWidth="250.0" text="Show: Processing Time" BorderPane.alignment="CENTER" />
                                              </top>
                                              <center>
                                                 <VBox prefHeight="135.0" prefWidth="270.0" BorderPane.alignment="CENTER">
