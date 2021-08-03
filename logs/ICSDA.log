@@ -114,3 +114,4 @@ java.security.InvalidAlgorithmParameterException: Curve not supported: secp256k1
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
 	at javafx.graphics/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:174)
 	at java.base/java.lang.Thread.run(Thread.java:831)
+0    [JavaFX Application Thread] 2021-08-03 00:40:05,872 ERROR com.samson.PerformantMetricsApp  - 
